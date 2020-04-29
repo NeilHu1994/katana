@@ -11,8 +11,16 @@ namespace Owin.Analysis
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            // Paths that start with /owin will be directed to our startup class.
+            RouteTable.Routes.MapOwinPath("/owin");
+
+            RouteTable.Routes.MapOwinPath("/special", app =>{
+                app.Run(context=> {
+                    context.Response.ContentType = "text/plain";
+                    return context.Response.WriteAsync("Hello World 2");
+                });
+            });
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Microsoft.Owin.Host.SystemWeb
             OwinAppContext appContext = OwinBuilder.Build(builder =>
             {
                 EnableIntegratedPipeline(builder, stage => firstStage = stage);
-                startup.Invoke(builder);
+                 startup.Invoke(builder);
             });
 
             string basePath = Utils.NormalizePath(HttpRuntime.AppDomainAppVirtualPath);
